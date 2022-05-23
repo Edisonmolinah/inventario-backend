@@ -33,7 +33,21 @@ router.post('/', async function(req, res){
 });
 router.get('/', async function(req, res){
     try{
-        const inventarios = await Inventario.find();
+        const inventarios = await Inventario.find().populate([
+            {
+                path: 'usuario'
+            },
+            {
+                path: 'marca'
+            },
+            {
+                path: 'tipoEquipo'
+            },
+            {
+                path: 'estadoEquipo'
+            }
+
+        ]);
         res.send(inventarios);
     }catch(error){
         console.log(error);
@@ -65,6 +79,7 @@ router.put('/:inventarioId', async function(req, res) {
             inventario.modelo = modelo;
             inventario.descripcion = descripcion;
             inventario.foto = foto;
+            inventario.color = color;
             inventario.precio = precio;
             inventario.usuario = usuario._id;
             inventario.tipoEquipo = tipoEquipo._id;
