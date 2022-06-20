@@ -63,7 +63,7 @@ router.put('/:inventarioId', async function(req, res) {
             return res.status(400).send('No existe el inventario');
         } 
 
-        const { serial, modelo, descripcion, foto, 
+        const { serial, modelo, descripcion, color, foto, 
             precio, usuario, marca, tipoEquipo, estadoEquipo, fechaCompra } = req.body;
         
             // buscamos por serial pero distinto al inventario que estoy actualizando
@@ -78,8 +78,8 @@ router.put('/:inventarioId', async function(req, res) {
             inventario.serial = serial;
             inventario.modelo = modelo;
             inventario.descripcion = descripcion;
-            inventario.foto = foto;
             inventario.color = color;
+            inventario.foto = foto; 
             inventario.precio = precio;
             inventario.usuario = usuario._id;
             inventario.tipoEquipo = tipoEquipo._id;
